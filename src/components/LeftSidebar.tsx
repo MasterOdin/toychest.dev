@@ -9,7 +9,6 @@ interface LeftSidebarProps {
 export const LeftSidebar: FC<LeftSidebarProps> = ({ setToy }) => {
   const toys = {
     'JSON Lint': ToyType.json_lint,
-    'YAML LINT': ToyType.yaml_lint,
   };
 
   return (
