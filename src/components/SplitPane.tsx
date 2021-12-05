@@ -1,4 +1,14 @@
-import React, { createContext, FC, MouseEvent as ReactMouseEvent, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import {
+  createContext,
+  FC,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 const SplitPaneContext = createContext<{
   leftWidth: number | null;
@@ -29,19 +39,15 @@ const SplitPaneLeft: FC = ({ children }) => {
     <div className="split-pane-left" ref={leftRef}>
       {children}
     </div>
-  )
-}
+  );
+};
 
 const SplitPaneRight: FC = ({ children }) => {
-  return (
-    <div className="split-pane-right">
-      {children}
-    </div>
-  )
-}
+  return <div className="split-pane-right">{children}</div>;
+};
 
 interface SplitPaneProps {
-  children: React.ReactNode[];
+  children: ReactNode[];
 }
 
 export const SplitPane: FC<SplitPaneProps> = ({ children }) => {
@@ -50,57 +56,59 @@ export const SplitPane: FC<SplitPaneProps> = ({ children }) => {
   const separatorXPosition = useRef<number | null>(null);
   const splitPaneRef = useRef<HTMLDivElement>(null);
 
-  const onMouseDown = useCallback((e: ReactMouseEvent) => {
-    separatorXPosition.current = e.clientX;
-  }, [separatorXPosition]);
+  const onMouseDown = useCallback(
+    (e: ReactMouseEvent) => {
+      separatorXPosition.current = e.clientX;
+    },
+    [separatorXPosition],
+  );
 
-  const onMouseMove = useCallback((e: MouseEvent) => {
-    if (!separatorXPosition.current || !splitPaneRef.current) {
-      return;
-    }
+  const onMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!separatorXPosition.current || !splitPaneRef.current) {
+        return;
+      }
 
-    const newLeftWidth = (leftWidth || 0) + e.clientX - separatorXPosition.current;
-    separatorXPosition.current = e.clientX;
+      const newLeftWidth =
+        (leftWidth || 0) + e.clientX - separatorXPosition.current;
+      separatorXPosition.current = e.clientX;
 
-    if (newLeftWidth <= 0) {
-      return leftWidth !== 0 && setLeftWidth(0);
-    }
+      if (newLeftWidth <= 0) {
+        return leftWidth !== 0 && setLeftWidth(0);
+      }
 
-    const splitPaneWidth = splitPaneRef.current.clientWidth;
+      const splitPaneWidth = splitPaneRef.current.clientWidth;
 
-    if (newLeftWidth >= splitPaneWidth) {
-      return leftWidth !== splitPaneWidth && setLeftWidth(splitPaneWidth);
-    }
+      if (newLeftWidth >= splitPaneWidth) {
+        return leftWidth !== splitPaneWidth && setLeftWidth(splitPaneWidth);
+      }
 
-
-    setLeftWidth(newLeftWidth);
-  }, [separatorXPosition, splitPaneRef, leftWidth]);
+      setLeftWidth(newLeftWidth);
+    },
+    [separatorXPosition, splitPaneRef, leftWidth],
+  );
 
   const onMouseUp = useCallback(() => {
     separatorXPosition.current = null;
   }, [separatorXPosition]);
 
   useEffect(() => {
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
 
     return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
     };
   }, [onMouseMove, onMouseUp]);
 
   return (
     <div className="split-pane" ref={splitPaneRef}>
       <SplitPaneContext.Provider value={{ leftWidth, setLeftWidth }}>
-        <SplitPaneLeft>
-          {children[0]}
-        </SplitPaneLeft>
+        <SplitPaneLeft>{children[0]}</SplitPaneLeft>
         <div className="separator" onMouseDown={onMouseDown} />
-        <SplitPaneRight>
-          {children[1]}
-        </SplitPaneRight>
+        <SplitPaneRight>{children[1]}</SplitPaneRight>
       </SplitPaneContext.Provider>
     </div>
   );
-}
+};

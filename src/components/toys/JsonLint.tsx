@@ -1,4 +1,5 @@
-import React, { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
+
 import { SplitPane } from '../SplitPane';
 
 export const JsonLint = () => {
@@ -18,12 +19,27 @@ export const JsonLint = () => {
     <SplitPane>
       <div className="p-1">
         <div>Input</div>
-        <div><button onClick={validateClick}>Validate</button></div>
-        <div><textarea ref={inputRef} className="border-2 border-black w-full p-1" rows={25} /></div>
+        <div>
+          <button onClick={validateClick}>Validate</button>
+        </div>
+        <div>
+          <textarea
+            ref={inputRef}
+            className="border-2 border-black w-full p-1"
+            rows={25}
+          />
+        </div>
       </div>
       <div className="p-1">
         <div className="mb-6">Output</div>
-        <div><textarea ref={outputRef} className="border-2 border-black w-full p-1" rows={25} readOnly={true} /></div>
+        <div>
+          <textarea
+            ref={outputRef}
+            className="border-2 border-black w-full p-1"
+            rows={25}
+            readOnly={true}
+          />
+        </div>
       </div>
     </SplitPane>
   );

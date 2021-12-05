@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { SplitPane } from './components/SplitPane';
-import { LeftSidebar } from './components/LeftSidebar';
-import { Toy } from './components/Toy';
-import { ToyType } from './types/toy';
+import { useState } from 'react';
 
+import './App.css';
+import { LeftSidebar } from './components/LeftSidebar';
+import { SplitPane } from './components/SplitPane';
+import { Toy } from './components/Toy';
+import logo from './logo.svg';
+import { ToyType } from './types/toy';
 
 function App() {
   const [toy, setToy] = useState<ToyType>(ToyType.json_lint);

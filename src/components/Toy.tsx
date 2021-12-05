@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+
 import { ToyType } from '../types/toy';
+
 import { JsonLint, YamlLint } from './toys';
 
 interface ToyProps {
