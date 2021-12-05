@@ -31,6 +31,8 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-testing-library": "^5.0.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "postcss": "^7",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
@@ -46,6 +48,7 @@
     "dev": "cross-env NODE_ENV=development concurrently -k \"BROWSER=none yarn start\" \"yarn electron\"",
     "electron": "wait-on tcp:3000 && electron .",
     "lint": "eslint --ext .ts,.tsx src",
+    "prepare": "husky install",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
@@ -64,17 +67,29 @@
     ],
     "ignorePatterns": "desktop",
     "rules": {
-      "brace-style": ["error", "1tbs"],
-      "curly": ["error", "multi-line"],
+      "brace-style": [
+        "error",
+        "1tbs"
+      ],
+      "curly": [
+        "error",
+        "multi-line"
+      ],
       "eol-last": "error",
       "import/no-cycle": "warn",
       "import/order": [
         "error",
         {
-          "alphabetize": { "order": "asc", "caseInsensitive": true },
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          },
           "newlines-between": "always",
           "groups": [
-            ["builtin", "external"],
+            [
+              "builtin",
+              "external"
+            ],
             "parent",
             "sibling",
             "index",
@@ -83,16 +98,35 @@
         }
       ],
       "import/prefer-default-export": "off",
-      "no-console": ["warn", { "allow": ["warn", "error", "info", "debug"] }],
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "warn",
+            "error",
+            "info",
+            "debug"
+          ]
+        }
+      ],
       "prefer-destructuring": [
         "error",
         {
-          "VariableDeclarator": { "array": false, "object": true },
-          "AssignmentExpression": { "array": false, "object": false }
+          "VariableDeclarator": {
+            "array": false,
+            "object": true
+          },
+          "AssignmentExpression": {
+            "array": false,
+            "object": false
+          }
         }
       ],
       "prettier/prettier": "error",
-      "react/jsx-boolean-value": ["error", "always"],
+      "react/jsx-boolean-value": [
+        "error",
+        "always"
+      ],
       "space-before-function-paren": "off",
       "sort-imports": [
         "error",
@@ -102,6 +136,12 @@
         }
       ]
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "browserslist": {
     "production": [
