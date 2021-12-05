@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { SplitPane } from './components/SplitPane';
+import { LeftSidebar } from './components/LeftSidebar';
+import { JsonLint, YamlLint } from './components/toys';
+import { Toy } from './components/toy';
+import { ToyEnum } from './components/toy/enum';
+
 
 function App() {
+  const [toy, setToy] = useState<Toy>(Toy.json_lint);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload. Test??
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="flex">
+          <img src={logo} className="logo" alt="logo" />
+          ToyChest.dev
+        </div>
       </header>
+      <SplitPane>
+        <LeftSidebar setToy={setToy} />
+        <Toy toy={toy} />
+      </SplitPane>
     </div>
   );
 }
