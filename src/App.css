@@ -14,12 +14,20 @@
   flex-direction: row;
 }
 
-.split-pane-left {
+.split-pane-left,
+.split-pane-right {
   height: 100vh;
+}
+
+.split-pane-left {
   width: 100px;
 }
 
+.split-pane-right {
+  width: 100%;
+}
+
 .separator {
-  border: 5px solid black;
+  border: 1px solid black;
   cursor: col-resize;
 }

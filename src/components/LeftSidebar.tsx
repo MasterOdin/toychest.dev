@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { Toy } from './toys/enum';
+import { ToyType } from '../types/toy';
 
 interface LeftSidebarProps {
-  setToy: (toy: Toy) => void;
+  setToy: (toy: ToyType) => void;
 }
 
 export const LeftSidebar: FC<LeftSidebarProps> = ({ setToy }) => {
   const toys = {
-    "JSON Lint": Toy.json_lint,
-    "YAML LINT": Toy.yaml_lint,
+    "JSON Lint": ToyType.json_lint,
+    "YAML LINT": ToyType.yaml_lint,
   };
 
   return (

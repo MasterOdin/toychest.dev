@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import { Toy as ToyEnum } from './toys/enum';
+import { ToyType } from '../types/toy';
 import { JsonLint, YamlLint } from './toys';
 
 interface ToyProps {
-  toy: ToyEnum;
+  toy: ToyType;
 }
 
 export const Toy: FC<ToyProps> = ({ toy }) => {
   let ToyComponent: () => JSX.Element;
 
   switch (toy) {
-    case ToyEnum.json_lint:
+    case ToyType.json_lint:
       ToyComponent = JsonLint;
       break;
-    case ToyEnum.yaml_lint:
+    case ToyType.yaml_lint:
       ToyComponent = YamlLint;
       break;
     default:

@@ -3,13 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import { SplitPane } from './components/SplitPane';
 import { LeftSidebar } from './components/LeftSidebar';
-import { JsonLint, YamlLint } from './components/toys';
-import { Toy } from './components/toy';
-import { ToyEnum } from './components/toy/enum';
+import { Toy } from './components/Toy';
+import { ToyType } from './types/toy';
 
 
 function App() {
-  const [toy, setToy] = useState<Toy>(Toy.json_lint);
+  const [toy, setToy] = useState<ToyType>(ToyType.json_lint);
 
   return (
     <div className="App">
