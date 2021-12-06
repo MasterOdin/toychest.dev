@@ -48,10 +48,13 @@ const SplitPaneRight: FC = ({ children }) => {
 
 interface SplitPaneProps {
   children: ReactNode[];
+  defaultWidth?: number;
 }
 
-export const SplitPane: FC<SplitPaneProps> = ({ children }) => {
-  const [leftWidth, setLeftWidth] = useState<number | null>(null);
+export const SplitPane: FC<SplitPaneProps> = ({ children, defaultWidth }) => {
+  const [leftWidth, setLeftWidth] = useState<number | null>(
+    defaultWidth || null,
+  );
 
   const separatorXPosition = useRef<number | null>(null);
   const splitPaneRef = useRef<HTMLDivElement>(null);
