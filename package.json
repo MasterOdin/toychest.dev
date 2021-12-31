@@ -9,7 +9,7 @@
   },
   "private": true,
   "homepage": "./",
-  "main": "desktop/main.js",
+  "main": "build/electron.js",
   "dependencies": {
     "classnames": "^2.3.1",
     "lorem-ipsum": "^2.0.4",
@@ -18,14 +18,14 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.2",
+    "@craco/craco": "^6.4.3",
     "@masterodin/eslint-config-typescript": "^3.1.1",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
-    "@types/node": "^14",
+    "@types/node": "^16",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4",
@@ -34,8 +34,10 @@
     "babel-eslint": "^10.1.0",
     "concurrently": "^6.4.0",
     "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
     "electron": "^16.0.4",
     "electron-builder": "^22.14.5",
+    "electron-notarize": "^1.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^6.0.0",
@@ -58,7 +60,7 @@
     "wait-on": "^6.0.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "build": "craco build",
@@ -83,7 +85,7 @@
       "react",
       "prettier"
     ],
-    "ignorePatterns": "desktop",
+    "ignorePatterns": "public/electron.js",
     "rules": {
       "brace-style": [
         "error",
