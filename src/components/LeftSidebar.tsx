@@ -9,13 +9,16 @@ interface LeftSidebarProps {
 export const LeftSidebar: FC<LeftSidebarProps> = ({ setToy }) => {
   const toys = {
     'JSON Lint': ToyType.json_lint,
+    'Base64 Encoder/Decoder': ToyType.base64_encoder_decoder,
+    'Hash Generator': ToyType.hash_generator,
+    'Lorem Ipsum Generator': ToyType.lorem_ipsum_generator,
   };
 
   return (
     <div className="pl-1 pt-1">
       <ul>
         {Object.entries(toys).map(([name, toy]) => (
-          <li key={toy} onClick={() => setToy(toy)}>
+          <li key={toy} className="cursor-pointer" onClick={() => setToy(toy)}>
             {name}
           </li>
         ))}

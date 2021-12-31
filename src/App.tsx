@@ -18,7 +18,7 @@ function App() {
           ToyChest.dev
         </div>
       </header>
-      <SplitPane>
+      <SplitPane defaultWidth={250}>
         <LeftSidebar setToy={setToy} />
         <Toy toy={toy} />
       </SplitPane>

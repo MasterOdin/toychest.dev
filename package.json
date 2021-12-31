@@ -1,26 +1,41 @@
 {
   "name": "toychest.dev",
+  "description": "Offline developer tools",
   "version": "0.1.0",
+  "author": {
+    "name": "Matthew Peveler",
+    "email": "matt.peveler@gmail.com",
+    "url": "https://mpeveler.com"
+  },
   "private": true,
+  "homepage": "./",
   "main": "desktop/main.js",
   "dependencies": {
+    "classnames": "^2.3.1",
+    "lorem-ipsum": "^2.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
     "@craco/craco": "^6.4.2",
     "@masterodin/eslint-config-typescript": "^3.1.1",
+    "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
+    "@types/node": "^14",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "autoprefixer": "^9",
     "babel-eslint": "^10.1.0",
-    "classnames": "^2.3.1",
     "concurrently": "^6.4.0",
     "cross-env": "^7.0.3",
     "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^6.0.0",
@@ -36,24 +51,26 @@
     "lint-staged": "^12.1.2",
     "postcss": "^7",
     "prettier": "^2.5.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "spectron": "^15.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "~4.4.0",
-    "wait-on": "^6.0.0",
-    "web-vitals": "^1.0.1"
+    "wait-on": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "scripts": {
+    "build": "craco build",
     "dev": "cross-env NODE_ENV=development concurrently -k \"BROWSER=none yarn start\" \"yarn electron\"",
+    "eject": "react-scripts eject",
     "electron": "wait-on tcp:3000 && electron .",
     "lint": "eslint --ext .ts,.tsx src",
+    "package": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
     "prepare": "husky install",
     "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [
