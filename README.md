@@ -19,5 +19,3 @@ yarn dev
 ```bash
 yarn lint
 ```
-
-<!-- <a target="_blank" href="https://icons8.comundefined">Toy Train</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->

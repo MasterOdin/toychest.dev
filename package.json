@@ -68,7 +68,7 @@
     "eject": "react-scripts eject",
     "electron": "wait-on tcp:3000 && electron .",
     "lint": "eslint --ext .ts,.tsx src",
-    "package": "electron-builder",
+    "package": "yarn build && electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "prepare": "husky install",
     "start": "craco start",

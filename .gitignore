@@ -10,7 +10,7 @@
 
 # production
 /build
-/src-tauri/target
+/release
 
 # misc
 .DS_Store

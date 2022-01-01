@@ -9,6 +9,7 @@
     "package.json"
   ],
   "directories": {
+    "buildResources": "builder/resources",
     "output": "release"
   },
   "afterSign": "builder/notarize.js",
@@ -18,5 +19,9 @@
     "entitlementsInherit": "builder/entitlements.mac.plist",
     "gatekeeperAssess": false,
     "hardenedRuntime": true
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "builder/resources/icon.ico"
   }
 }
