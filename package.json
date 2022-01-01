@@ -1,6 +1,6 @@
 {
   "name": "toychest.dev",
-  "description": "Offline developer tools",
+  "description": "Toy chest of offline developer tools",
   "version": "0.1.0",
   "author": {
     "name": "Matthew Peveler",
@@ -11,6 +11,7 @@
   "homepage": "./",
   "main": "build/electron.js",
   "dependencies": {
+    "@tauri-apps/api": "^1.0.0-beta.8",
     "classnames": "^2.3.1",
     "lorem-ipsum": "^2.0.4",
     "react": "^17.0.2",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@craco/craco": "^6.4.3",
     "@masterodin/eslint-config-typescript": "^3.1.1",
+    "@tauri-apps/cli": "^1.0.0-beta.10",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -35,9 +37,6 @@
     "concurrently": "^6.4.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
-    "electron": "^16.0.4",
-    "electron-builder": "^22.14.5",
-    "electron-notarize": "^1.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^6.0.0",
@@ -54,7 +53,6 @@
     "postcss": "^7",
     "prettier": "^2.5.1",
     "react-scripts": "4.0.3",
-    "spectron": "^15.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "~4.4.0",
     "wait-on": "^6.0.0"
@@ -64,14 +62,13 @@
   },
   "scripts": {
     "build": "craco build",
-    "dev": "cross-env NODE_ENV=development concurrently -k \"BROWSER=none yarn start\" \"yarn electron\"",
+    "dev": "cross-env NODE_ENV=development concurrently -k \"BROWSER=none yarn start\" \"wait-on tcp:3000 && yarn tauri dev\"",
     "eject": "react-scripts eject",
-    "electron": "wait-on tcp:3000 && electron .",
     "lint": "eslint --ext .ts,.tsx src",
-    "package": "electron-builder",
-    "postinstall": "electron-builder install-app-deps",
+    "package": "tauri build --verbose",
     "prepare": "husky install",
     "start": "craco start",
+    "tauri": "tauri",
     "test": "craco test"
   },
   "eslintConfig": {
