@@ -12,6 +12,7 @@ export const LeftSidebar: FC<LeftSidebarProps> = ({ setToy }) => {
     'Base64 Encoder/Decoder': ToyType.base64_encoder_decoder,
     'Hash Generator': ToyType.hash_generator,
     'Lorem Ipsum Generator': ToyType.lorem_ipsum_generator,
+    'XML Lint': ToyType.xml_lint,
   };
 
   return (

@@ -3,4 +3,5 @@ export enum ToyType {
   hash_generator = 'hash_generator',
   json_lint = 'json_lint',
   lorem_ipsum_generator = 'lorem_ipsum_generator',
+  xml_lint = 'xml_lint',
 }

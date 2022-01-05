@@ -7,6 +7,7 @@ import {
   HashGenerator,
   JsonLint,
   LoremIpsumGenerator,
+  XmlLint,
 } from './toys';
 
 interface ToyProps {
@@ -28,6 +29,9 @@ export const Toy: FC<ToyProps> = ({ toy }) => {
       break;
     case ToyType.lorem_ipsum_generator:
       ToyComponent = LoremIpsumGenerator;
+      break;
+    case ToyType.xml_lint:
+      ToyComponent = XmlLint;
       break;
     default:
       throw new Error(`Unknown toy: ${toy}`);
