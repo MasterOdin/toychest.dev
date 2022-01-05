@@ -1,10 +1,13 @@
 const dotenv = require('dotenv');
 const { notarize } = require('electron-notarize');
+const fs = require('fs');
 const path = require('path');
 
-dotenv.config({
-  path: path.resolve(path.join(__dirname, '..', '.env')),
-});
+if (fs.existsSync(path.join(__dirname, '..', '.env'))) {
+  dotenv.config({
+    path: path.resolve(path.join(__dirname, '..', '.env')),
+  });
+}
 
 exports.default = async (context) => {
   if (process.env.SKIP_NOTARIZE === '1') {
