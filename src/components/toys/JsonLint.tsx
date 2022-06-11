@@ -1,41 +1,35 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Button, ButtonType } from '../Button';
 import { ErrorMessage } from '../ErrorMessage';
 import { SplitPane } from '../SplitPane';
 
+enum SpacerType {
+  spaces = 'spaces',
+  tabs = 'tabs',
+}
+
 export const JsonLint = () => {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const numberRef = useRef<HTMLInputElement>(null);
-  const outputRef = useRef<HTMLTextAreaElement>(null);
-  const selectRef = useRef<HTMLSelectElement>(null);
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
+  const [spacing, setSpacing] = useState(2);
+  const [spacer, setSpacer] = useState<SpacerType>(SpacerType.spaces);
 
   const [error, setError] = useState<string | null>(null);
 
   const validateClick = useCallback(() => {
-    if (
-      !inputRef.current ||
-      !numberRef.current ||
-      !outputRef.current ||
-      !selectRef.current
-    ) {
-      return;
-    }
-    const input = inputRef.current?.value;
     try {
       const output = JSON.stringify(
         JSON.parse(input),
         null,
-        (selectRef.current.value === 'spaces' ? ' ' : '\t').repeat(
-          parseInt(numberRef.current.value, 10),
-        ),
+        (spacer === SpacerType.spaces ? ' ' : '\t').repeat(spacing),
       );
-      outputRef.current.value = output;
+      setOutput(output);
       setError(null);
     } catch (e) {
       setError((e as Error).message);
     }
-  }, [inputRef, outputRef, selectRef]);
+  }, [input, spacer, spacing]);
 
   return (
     <SplitPane defaultWidth={930}>
@@ -45,24 +39,31 @@ export const JsonLint = () => {
           <Button type={ButtonType.secondary} onClick={validateClick}>
             Validate
           </Button>
-          <select ref={selectRef}>
-            <option value="spaces">Spaces</option>
-            <option value="tabs">Tabs</option>
+          <select
+            value={spacer}
+            onChange={(e) => setSpacer(e.target.value as SpacerType)}
+          >
+            <option value={SpacerType.spaces}>Spaces</option>
+            <option value={SpacerType.tabs}>Tabs</option>
           </select>
           <input
             type="number"
             min={1}
             max={10}
-            defaultValue={2}
-            ref={numberRef}
+            value={spacing}
+            onChange={(e) => {
+              const val = parseInt(e.target.value, 10);
+              setSpacing(Number.isNaN(val) ? 2 : val);
+            }}
           />
         </div>
         <div>
           <textarea
-            ref={inputRef}
             className="border-2 border-black w-full p-1"
+            onChange={(e) => setInput(e.target.value)}
             rows={25}
             spellCheck={false}
+            value={input}
           />
         </div>
       </div>
@@ -72,11 +73,11 @@ export const JsonLint = () => {
           <ErrorMessage error={error} />
         ) : (
           <textarea
-            ref={outputRef}
             className="border-2 border-black w-full p-1"
             rows={25}
             readOnly={true}
             spellCheck={false}
+            value={output}
           />
         )}
       </div>
