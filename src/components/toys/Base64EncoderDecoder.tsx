@@ -7,11 +7,11 @@ export const Base64EncoderDecoder = () => {
   const [output, setOutput] = useState<string>('');
 
   const encodeClick = useCallback(() => {
-    setOutput(btoa(input));
+    setOutput(window.btoa(input));
   }, [input, setOutput]);
 
   const decodeClick = useCallback(() => {
-    setInput(atob(output));
+    setInput(window.atob(output));
   }, [output, setInput]);
 
   return (
