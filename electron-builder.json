@@ -18,7 +18,11 @@
     "entitlements": "builder/entitlements.mac.plist",
     "entitlementsInherit": "builder/entitlements.mac.plist",
     "gatekeeperAssess": false,
-    "hardenedRuntime": true
+    "hardenedRuntime": true,
+    "target": {
+      "arch": "universal",
+      "target": "default"
+    }
   },
   "win": {
     "target": "nsis",
