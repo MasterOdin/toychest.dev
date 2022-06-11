@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: yarn
-      - run: yarn
+      - run: yarn install --frozen-lockfile
       - run: yarn package
         env:
           CSC_LINK: ${{ secrets.APPLE_CERT_BASE64 }}
