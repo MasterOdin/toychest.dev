@@ -64,7 +64,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "craco build",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true craco build",
     "dev": "cross-env NODE_ENV=development concurrently -k \"BROWSER=none yarn start\" \"yarn electron\"",
     "eject": "react-scripts eject",
     "electron": "wait-on tcp:3000 && electron .",
